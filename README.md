@@ -62,9 +62,42 @@ Verify Hermes is running:
 curl -s http://127.0.0.1:8642/health
 ```
 
-## Build the Plugin
+## Install the Plugin
+
+> [!TIP]
+> For most users, the release package install (below) is the recommended approach. No build or cloning required.
+
+### Option 1: Release Package (Recommended)
+
+**No build required** — download the pre-built `.tgz` from GitHub Releases and install directly:
+
+1. Go to [OpenClaw Hermes Releases](https://github.com/shadowkun/openclaw-plugin-hermes/releases)
+2. Download the `openclaw-plugin-hermes-1.0.0.tgz` asset for the latest release
+3. Install the downloaded tarball:
 
 ```bash
+openclaw plugins install /path/to/openclaw-plugin-hermes-1.0.0.tgz
+```
+
+> [!NOTE]
+> Replace `/path/to/` with the actual path where you saved the file.
+
+Verify the install:
+
+```bash
+openclaw plugins inspect hermes-executor
+```
+
+Expected output shows status `loaded` with tools `hermes_status` and `hermes_execute`.
+
+### Option 2: Development Setup (For Contributors)
+
+If you want to modify the plugin source or contribute changes:
+
+```bash
+# Clone and build from source
+git clone https://github.com/shadowkun/openclaw-plugin-hermes.git
+cd openclaw-plugin-hermes
 npm install
 npm run build
 ```
@@ -73,6 +106,13 @@ Verify TypeScript:
 
 ```bash
 npm run typecheck
+```
+
+Link the built plugin:
+
+```bash
+openclaw plugins install --link /path/to/openclaw-plugin-hermes
+openclaw plugins inspect hermes-executor
 ```
 
 ## Configure in OpenClaw
@@ -116,19 +156,6 @@ Minimal working example for agent `main`:
 ```
 
 If your agent already has a `tools.alsoAllow` section, append the Hermes tools instead of replacing the existing entries.
-
-### Local install/link example
-
-```bash
-openclaw plugins install --link /absolute/path/to/openclaw-plugin-hermes
-openclaw plugins inspect hermes-executor
-```
-
-Expected `inspect` result:
-- status: `loaded`
-- tools:
-  - `hermes_status`
-  - `hermes_execute`
 
 ### Configuration Options
 

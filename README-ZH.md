@@ -62,9 +62,42 @@ hermes gateway
 curl -s http://127.0.0.1:8642/health
 ```
 
-## 构建插件
+## 安装插件
+
+> [!TIP]
+> 对大多数用户，推荐使用发行版包安装（见下文），无需构建或克隆代码。
+
+### 方式一：发行版包（推荐）
+
+**无需构建** — 从 GitHub Releases 下载预编译的 `.tgz` 并直接安装：
+
+1. 访问 [OpenClaw Hermes Releases](https://github.com/shadowkun/openclaw-plugin-hermes/releases)
+2. 下载最新版本的 `openclaw-plugin-hermes-1.0.0.tgz` 资源
+3. 安装下载的 tarball：
 
 ```bash
+openclaw plugins install /path/to/openclaw-plugin-hermes-1.0.0.tgz
+```
+
+> [!NOTE]
+> 将 `/path/to/` 替换为实际保存文件的路径。
+
+验证安装：
+
+```bash
+openclaw plugins inspect hermes-executor
+```
+
+预期输出显示 status `loaded`，包含工具 `hermes_status` 和 `hermes_execute`。
+
+### 方式二：开发环境搭建（贡献者）
+
+如需修改插件源码或贡献代码：
+
+```bash
+# 从源码克隆并构建
+git clone https://github.com/shadowkun/openclaw-plugin-hermes.git
+cd openclaw-plugin-hermes
 npm install
 npm run build
 ```
@@ -73,6 +106,13 @@ TypeScript 类型检查：
 
 ```bash
 npm run typecheck
+```
+
+链接已构建的插件：
+
+```bash
+openclaw plugins install --link /path/to/openclaw-plugin-hermes
+openclaw plugins inspect hermes-executor
 ```
 
 ## 在 OpenClaw 中配置
@@ -116,19 +156,6 @@ npm run typecheck
 ```
 
 如果代理已有 `tools.alsoAllow` 配置项，请将 Hermes 工具追加到现有条目中，而非替换。
-
-### 本地安装/链接示例
-
-```bash
-openclaw plugins install --link /absolute/path/to/openclaw-plugin-hermes
-openclaw plugins inspect hermes-executor
-```
-
-`inspect` 预期结果：
-- status: `loaded`
-- tools:
-  - `hermes_status`
-  - `hermes_execute`
 
 ### 配置选项
 
