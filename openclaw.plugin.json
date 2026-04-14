@@ -1,0 +1,34 @@
+{
+  "id": "hermes-executor",
+  "name": "Hermes Executor",
+  "description": "Integrates Hermes as an AI backend for OpenClaw via /v1/chat/completions and /health endpoints",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "description": "Hermes gateway base URL (default: http://127.0.0.1:8642)",
+        "default": "http://127.0.0.1:8642"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "API key for Hermes authentication"
+      },
+      "model": {
+        "type": "string",
+        "description": "Default model to use for chat completions"
+      },
+      "timeoutMs": {
+        "type": "number",
+        "description": "Request timeout in milliseconds (default: 30000)",
+        "default": 30000
+      },
+      "systemPrompt": {
+        "type": "string",
+        "description": "Default system prompt to prepend to requests"
+      }
+    },
+    "required": ["baseUrl", "apiKey"]
+  }
+}
