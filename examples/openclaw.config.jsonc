@@ -1,0 +1,49 @@
+// OpenClaw configuration example for Hermes Executor plugin
+// Copy this to your OpenClaw config file and adjust values as needed
+
+{
+  "agents": {
+    "list": [
+      {
+        // Optional plugin tools must be explicitly allowed for the agent
+        "id": "main",
+        "tools": {
+          "alsoAllow": [
+            "hermes_status",
+            "hermes_execute"
+          ]
+        }
+      }
+    ]
+  },
+  "plugins": {
+    "entries": {
+      // Plugin ID must match the manifest: "hermes-executor"
+      "hermes-executor": {
+        // Enable the plugin
+        "enabled": true,
+        "config": {
+          // Hermes gateway base URL
+          // Required: Must point to your running Hermes instance
+          "baseUrl": "http://127.0.0.1:8642",
+
+          // API key for authentication
+          // Required: Must match API_SERVER_KEY in your ~/.hermes/.env
+          "apiKey": "your-secure-api-key-here",
+
+          // Default model for chat completions
+          // Optional: Remove or adjust based on your Hermes setup
+          "model": "default",
+
+          // Request timeout in milliseconds
+          // Optional: Defaults to 30000 (30 seconds)
+          "timeoutMs": 30000,
+
+          // Default system prompt
+          // Optional: Prepended to all hermes_execute requests
+          "systemPrompt": "You are a helpful assistant that answers questions accurately."
+        }
+      }
+    }
+  }
+}
