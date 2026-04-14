@@ -28,6 +28,8 @@ npm-debug.log*
 
 # Temporary
 *.tmp
+*.tgz
+release-assets/
 
 # Local agent state
 .sisyphus/
