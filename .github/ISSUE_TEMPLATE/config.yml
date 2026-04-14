@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/shadowkun/openclaw-plugin-hermes#readme
+    about: Check the README for usage instructions and troubleshooting
+  - name: Contributing Guide
+    url: https://github.com/shadowkun/openclaw-plugin-hermes/blob/main/CONTRIBUTING.md
+    about: See CONTRIBUTING.md for development setup and testing procedures
